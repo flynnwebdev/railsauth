@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Content</th>
       <th>User</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,11 @@
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.user.email %></td>
+        <td>
+          <% if post.image.attached? %>
+            <%= cl_image_tag(post.image.key, :width=>100, :crop=>"fit") %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', post %></td>
         <% if post.can_change?(current_user) %>
           <td><%= link_to 'Edit', edit_post_path(post) %></td>
